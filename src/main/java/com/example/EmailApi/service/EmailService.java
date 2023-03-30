@@ -20,7 +20,7 @@ public class EmailService {
             String toAddress = emailTemplate.getTo();
             String subject = emailTemplate.getSubject();
             String message = emailTemplate.getMessage();
-            String pass = "dwfuomlwhtgffvnl";
+            String pass = "app-pass";
             Session session = getSesstion(fromAddress, pass);
             MimeMessage mimeMessage = new MimeMessage(session);
             mimeMessage.setFrom(fromAddress);
@@ -42,7 +42,7 @@ public class EmailService {
             String toAddress = tempwithAttach.getTo();
             String subject = tempwithAttach.getSubject();
             String message = tempwithAttach.getMessage();
-            String pass = "dwfuomlwhtgffvnl";
+            String pass = "app-pass";
             Session session = getSesstion(fromAddress, pass);
             MimeMessage mimeMessage = new MimeMessage(session);
             mimeMessage.setFrom(fromAddress);
@@ -52,8 +52,8 @@ public class EmailService {
             MimeBodyPart bodytext = new MimeBodyPart();
             MimeBodyPart bodyattach = new MimeBodyPart();
             bodytext.setText(message);
-            File file = new File("C:\\Users\\master\\ReenaSpringBoot\\sendingEmail\\src\\main\\resources\\static\\images");
-
+            String path = "C:\\Users\\master\\ReenaSpringBoot\\sendingEmail\\src\\main\\resources\\static\\images";
+            File file = new File(path);
             multipartFile.transferTo(file);
             bodyattach.attachFile(file);
             mimeMultipart.addBodyPart(bodytext);
@@ -78,7 +78,7 @@ public class EmailService {
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(fromAddress,pass);
+                return new PasswordAuthentication("user-name","pass");
             }
         });
         return session;
